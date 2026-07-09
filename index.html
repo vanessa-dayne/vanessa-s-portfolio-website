@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanessa's Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Outfit:wght@400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Outfit', sans-serif;
+}
+
+:root{
+    --hot-pink:#ff4f93;
+    --deep-rose:#d6336c;
+    --cream-pink:#fff0f6;
+    --soft-pink:#ffd6e8;
+    --white:#ffffff;
+    --deep-pink-text:#7a1f47;
+    --text-body:#8a4767;
+    --shadow-pink:rgba(255,79,147,0.28);
+}
+
+html{ scroll-behavior:smooth; }
+
+body{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 12% 8%, rgba(255,255,255,0.65), transparent 38%),
+      radial-gradient(circle at 88% 92%, rgba(214,51,108,0.10), transparent 45%),
+      linear-gradient(165deg, var(--cream-pink) 0%, #ffe3ef 50%, var(--cream-pink) 100%);
+    color:var(--deep-pink-text);
+    overflow-x:hidden;
+    position:relative;
+}
+
+#sparkle-field{
+    position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+}
+.sparkle{
+    position:absolute;
+    color:var(--hot-pink);
+    opacity:.45;
+    animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+    0%{ transform:translateY(0) rotate(0deg) scale(1); opacity:0; }
+    10%{ opacity:.55; }
+    90%{ opacity:.45; }
+    100%{ transform:translateY(-100vh) rotate(360deg) scale(1.25); opacity:0; }
+}
+
+h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+}
+
+.bow-nav-wrap{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    display:flex;
+    justify-content:center;
+    padding:18px 16px 10px;
+    background:linear-gradient(180deg, rgba(255,240,246,0.96), rgba(255,240,246,0.7));
+    backdrop-filter:blur(8px);
+}
+
+.bow-nav{
+    display:flex;
+    gap:8px;
+    background:var(--white);
+    padding:8px;
+    border-radius:50px;
+    box-shadow:0 8px 24px var(--shadow-pink), inset 0 1px 0 rgba(255,255,255,0.8);
+    border:2px solid var(--soft-pink);
+    position:relative;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.tab-btn{
+    position:relative;
+    border:none;
+    background:transparent;
+    padding:12px 22px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:.92rem;
+    letter-spacing:.01em;
+    color:var(--deep-pink-text);
+    cursor:pointer;
+    border-radius:40px;
+    transition:color .35s ease;
+    z-index:2;
+    white-space:nowrap;
+}
+
+.tab-btn.active{ color:var(--white); }
+.tab-btn:hover:not(.active){ color:var(--deep-rose); }
+
+.tab-glider{
+    position:absolute;
+    top:8px; left:8px;
+    height:40px;
+    border-radius:40px;
+    background:linear-gradient(135deg, var(--hot-pink), var(--deep-rose));
+    box-shadow:0 4px 14px var(--shadow-pink);
+    transition:left .45s cubic-bezier(.34,1.56,.64,1), top .45s cubic-bezier(.34,1.56,.64,1), width .45s cubic-bezier(.34,1.56,.64,1);
+    z-index:1;
+}
+
+.tab-glider::after{
+    content:'';
+    position:absolute;
+    top:-13px; left:50%;
+    transform:translateX(-50%);
+    width:22px; height:14px;
+    background:
+      radial-gradient(circle at 30% 50%, var(--white) 0 40%, transparent 41%),
+      radial-gradient(circle at 70% 50%, var(--white) 0 40%, transparent 41%);
+    opacity:.95;
+}
+
+@media (max-width:680px){
+    .bow-nav{ gap:4px; padding:6px; }
+    .tab-btn{ padding:10px 14px; font-size:.78rem; }
+}
+
+main{
+    position:relative;
+    z-index:5;
+    padding:140px 20px 80px;
+    max-width:1000px;
+    margin:0 auto;
+}
+
+.panel{ display:none; animation:panelIn .55s ease forwards; }
+.panel.active{ display:block; }
+
+@keyframes panelIn{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:translateY(0); }
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:.85rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--deep-rose);
+    background:var(--white);
+    padding:6px 16px;
+    border-radius:20px;
+    box-shadow:0 4px 10px var(--shadow-pink);
+    margin-bottom:18px;
+}
+
+.home-hero{ text-align:center; padding:20px 0 10px; }
+
+.profile-frame{
+    position:relative;
+    width:180px; height:180px;
+    margin:0 auto 26px;
+}
+.profile-frame img{
+    width:100%; height:100%;
+    object-fit:cover;
+    border-radius:50%;
+    border:5px solid var(--white);
+    box-shadow:0 10px 30px var(--shadow-pink), 0 0 0 8px var(--soft-pink);
+}
+.profile-frame::before{
+    content:'✦';
+    position:absolute;
+    top:-14px; right:-6px;
+    font-size:2.1rem;
+    color:var(--deep-rose);
+    filter:drop-shadow(0 2px 4px rgba(214,51,108,0.4));
+    animation:spin 6s linear infinite;
+}
+@keyframes spin{ from{ transform:rotate(0deg); } to{ transform:rotate(360deg); } }
+
+.home-hero h1{
+    font-size:clamp(2.2rem, 6vw, 3.2rem);
+    color:var(--deep-pink-text);
+    line-height:1.15;
+    margin-bottom:6px;
+}
+.home-hero .subtitle{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    color:var(--deep-rose);
+    font-size:1.05rem;
+    margin-bottom:22px;
+}
+
+.about-text{
+    max-width:680px;
+    margin:0 auto;
+    text-align:left;
+}
+.about-text p{
+    line-height:1.85;
+    font-weight:400;
+    color:var(--text-body);
+    margin-bottom:16px;
+    font-size:.97rem;
+}
+
+.tag-row{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:26px;
+}
+.tag-pill{
+    background:var(--white);
+    border:2px solid var(--soft-pink);
+    color:var(--deep-rose);
+    font-weight:600;
+    font-size:.74rem;
+    padding:8px 18px;
+    border-radius:30px;
+    box-shadow:0 4px 10px rgba(255,79,147,0.15);
+}
+
+.gloss-card{
+    background:linear-gradient(160deg, var(--white) 0%, #fff6fa 100%);
+    border:2px solid var(--soft-pink);
+    border-radius:20px;
+    padding:30px 26px 26px;
+    position:relative;
+    box-shadow:0 10px 26px rgba(255,79,147,0.16), inset 0 1px 0 rgba(255,255,255,0.9);
+    transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease;
+    margin-top:14px;
+}
+
+.gloss-card::before{
+    content:'';
+    position:absolute;
+    top:-12px; left:24px;
+    width:54px; height:24px;
+    background:repeating-linear-gradient(135deg, var(--hot-pink) 0 5px, #ffc2dc 5px 10px);
+    opacity:.92;
+    transform:rotate(-5deg);
+    border-radius:2px;
+    box-shadow:0 3px 6px rgba(0,0,0,0.12);
+    z-index:3;
+}
+
+.gloss-card.tape-right::before{ left:auto; right:24px; transform:rotate(5deg); }
+.gloss-card.tape-center::before{ left:50%; transform:translateX(-50%) rotate(-3deg); }
+
+.gloss-card:hover{
+    transform:translateY(-6px) scale(1.015);
+    box-shadow:0 16px 36px rgba(255,79,147,0.26), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.gloss-card h3{
+    font-size:1.18rem;
+    color:var(--deep-rose);
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+.gloss-card p{
+    font-weight:400;
+    line-height:1.65;
+    color:var(--text-body);
+    font-size:.9rem;
+}
+
+.section-title{ text-align:center; margin-bottom:28px; }
+.section-title h2{ font-size:clamp(1.7rem, 4.5vw, 2.4rem); color:var(--deep-pink-text); }
+.section-title .eyebrow{ margin-bottom:8px; }
+
+.grid-2{ display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:24px; }
+.grid-3{ display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:18px; }
+
+.status-chip{
+    display:inline-block;
+    margin-top:14px;
+    font-size:.68rem;
+    font-weight:700;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    padding:5px 14px;
+    border-radius:20px;
+    background:var(--soft-pink);
+    color:var(--deep-pink-text);
+}
+.status-chip.live{ background:linear-gradient(135deg, var(--hot-pink), var(--deep-rose)); color:var(--white); }
+
+.divider-section{ margin-top:60px; }
+
+.level-block{ margin-bottom:48px; }
+.level-block:last-child{ margin-bottom:0; }
+
+.level-header{
+    display:flex;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+}
+.level-header h3{
+    font-size:1.4rem;
+    color:var(--deep-rose);
+}
+.level-header .level-sub{
+    font-size:.85rem;
+    color:var(--text-body);
+    font-weight:500;
+}
+
+.subsection-label{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:.95rem;
+    color:var(--deep-pink-text);
+    margin:20px 0 10px;
+}
+
+.pill-list{
+    list-style:none;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:10px;
+}
+.pill-list li{
+    background:var(--white);
+    border:1.5px solid var(--soft-pink);
+    border-radius:12px;
+    padding:11px 16px;
+    font-size:.85rem;
+    font-weight:500;
+    color:var(--text-body);
+    box-shadow:0 3px 8px rgba(255,79,147,0.1);
+    position:relative;
+    padding-left:32px;
+}
+.pill-list li::before{
+    content:'✦';
+    position:absolute;
+    left:12px;
+    color:var(--hot-pink);
+    font-size:.75rem;
+}
+
+.honors-row{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+    gap:10px;
+}
+.honor-badge{
+    text-align:center;
+    background:linear-gradient(135deg, var(--white), #fff0f6);
+    border:1.5px solid var(--soft-pink);
+    border-radius:14px;
+    padding:14px 10px;
+    font-weight:600;
+    font-size:.85rem;
+    color:var(--deep-rose);
+}
+.honor-badge .grade{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:1.3rem;
+    color:var(--deep-pink-text);
+    margin-bottom:2px;
+}
+
+.social-card{ text-decoration:none; display:block; }
+.social-card .gloss-card{ text-align:center; padding:34px 20px 26px; }
+
+.social-icon{
+    width:56px; height:56px;
+    margin:0 auto 14px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--hot-pink), var(--deep-rose));
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 16px var(--shadow-pink);
+}
+.social-icon svg{ width:26px; height:26px; fill:var(--white); }
+
+.social-card h3{ justify-content:center; color:var(--deep-rose); font-size:1.1rem; }
+.social-card .handle{
+    font-size:.8rem; font-weight:500; color:var(--text-body);
+    margin-top:4px; word-break:break-word;
+}
+.social-card:hover .gloss-card{ transform:translateY(-8px) scale(1.03); }
+
+
+.timeline{
+    position:relative;
+    margin-top:10px;
+    padding-left:28px;
+    border-left:3px dashed var(--soft-pink);
+}
+.timeline-item{
+    position:relative;
+    margin-bottom:22px;
+    padding-bottom:2px;
+}
+.timeline-item:last-child{ margin-bottom:0; }
+.timeline-item::before{
+    content:'✦';
+    position:absolute;
+    left:-37px;
+    top:0;
+    color:var(--hot-pink);
+    font-size:1rem;
+    background:var(--cream-pink);
+}
+.timeline-year{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--deep-rose);
+    font-size:1.05rem;
+    margin-bottom:2px;
+}
+.timeline-desc{
+    font-size:.85rem;
+    color:var(--text-body);
+}
+
+.project-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:24px;
+    margin-top:16px;
+}
+.project-card{
+    display:flex;
+    flex-direction:column;
+    height:100%;
+}
+.project-thumb{
+    width:100%;
+    aspect-ratio:16/9;
+    border-radius:14px;
+    overflow:hidden;
+    margin-bottom:14px;
+    background:linear-gradient(135deg, var(--soft-pink), #ffc2dc);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2.4rem;
+    position:relative;
+}
+.project-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.project-card h3{ font-size:1.1rem; margin-bottom:6px; }
+.project-card .project-desc{
+    font-size:.86rem;
+    color:var(--text-body);
+    line-height:1.55;
+    margin-bottom:12px;
+}
+
+.tech-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:12px;
+}
+.tech-tags span{
+    background:var(--cream-pink);
+    border:1px solid var(--soft-pink);
+    color:var(--deep-rose);
+    font-size:.68rem;
+    font-weight:700;
+    padding:4px 10px;
+    border-radius:20px;
+    letter-spacing:.02em;
+}
+
+.project-meta{
+    font-size:.82rem;
+    color:var(--text-body);
+    margin-bottom:14px;
+    line-height:1.5;
+}
+.project-meta strong{
+    color:var(--deep-pink-text);
+    font-weight:600;
+}
+
+.project-btn-row{
+    display:flex;
+    gap:10px;
+    margin-top:auto;
+    flex-wrap:wrap;
+}
+.project-btn{
+    flex:1;
+    min-width:120px;
+    text-align:center;
+    text-decoration:none;
+    font-weight:600;
+    font-size:.8rem;
+    padding:10px 14px;
+    border-radius:30px;
+    transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s ease;
+}
+.project-btn.demo{
+    background:linear-gradient(135deg, var(--hot-pink), var(--deep-rose));
+    color:var(--white);
+    box-shadow:0 4px 12px var(--shadow-pink);
+}
+.project-btn.repo{
+    background:var(--white);
+    color:var(--deep-rose);
+    border:1.5px solid var(--soft-pink);
+}
+.project-btn:hover{ transform:translateY(-3px); }
+.stack-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));
+    gap:14px;
+    margin-top:18px;
+}
+.stack-chip{
+    background:var(--white);
+    border:1.5px solid var(--soft-pink);
+    border-radius:14px;
+    padding:16px 12px;
+    text-align:center;
+    font-weight:600;
+    font-size:.85rem;
+    color:var(--deep-rose);
+    box-shadow:0 4px 10px rgba(255,79,147,0.12);
+    transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+.stack-chip:hover{ transform:translateY(-4px) scale(1.05); }
+.stack-chip .stack-icon{ font-size:1.4rem; display:block; margin-bottom:6px; }
+.stack-chip.soon{
+    border-style:dashed;
+    color:var(--text-body);
+    opacity:.85;
+}
+.stack-chip.soon .stack-icon{ opacity:.7; }
+
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));
+    gap:14px;
+    margin-top:10px;
+}
+.stat-card{
+    background:linear-gradient(160deg, var(--white) 0%, #fff6fa 100%);
+    border:1.5px solid var(--soft-pink);
+    border-radius:16px;
+    padding:18px 12px;
+    text-align:center;
+    box-shadow:0 6px 16px rgba(255,79,147,0.14);
+}
+.stat-card .stat-emoji{ font-size:1.5rem; display:block; margin-bottom:6px; }
+.stat-card .stat-num{
+    font-family:'Fraunces', serif;
+    font-size:1.6rem;
+    color:var(--deep-pink-text);
+    display:block;
+    line-height:1;
+}
+.stat-card .stat-label{
+    font-size:.74rem;
+    font-weight:600;
+    color:var(--text-body);
+    margin-top:4px;
+    display:block;
+}
+
+.learning-list{
+    list-style:none;
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:10px;
+    margin-top:8px;
+}
+.learning-list li{
+    background:var(--white);
+    border:1.5px dashed var(--soft-pink);
+    border-radius:12px;
+    padding:11px 16px;
+    font-size:.85rem;
+    font-weight:500;
+    color:var(--text-body);
+    position:relative;
+    padding-left:32px;
+}
+.learning-list li::before{
+    content:'🌱';
+    position:absolute;
+    left:11px;
+    font-size:.8rem;
+}
+
+footer{
+    position:relative; z-index:5;
+    text-align:center;
+    padding:30px 20px 14px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:.9rem;
+    color:var(--deep-rose);
+}
+footer .footer-credit{
+    font-style:normal;
+    font-family:'Outfit', sans-serif;
+    font-size:.75rem;
+    color:var(--text-body);
+    margin-top:8px;
+    padding-bottom:20px;
+}
+
+.burst{
+    position:fixed;
+    pointer-events:none;
+    font-size:18px;
+    z-index:9999;
+    animation:burstFly 1s ease-out forwards;
+}
+@keyframes burstFly{
+    0%{ transform:translate(0,0) scale(1) rotate(0deg); opacity:1; }
+    100%{ transform:translate(var(--x), var(--y)) scale(0.3) rotate(180deg); opacity:0; }
+}
+
+@media (max-width:600px){
+    main{ padding:160px 14px 60px; }
+    .about-text{ text-align:left; }
+}
+</style>
+</head>
+<body>
+
+<div id="sparkle-field"></div>
+
+<div class="bow-nav-wrap">
+    <nav class="bow-nav" id="bowNav">
+        <div class="tab-glider" id="tabGlider"></div>
+        <button class="tab-btn active" data-tab="home">Home</button>
+        <button class="tab-btn" data-tab="academics">Academic Background</button>
+        <button class="tab-btn" data-tab="projects">Projects</button>
+        <button class="tab-btn" data-tab="contact">Contact</button>
+    </nav>
+</div>
+
+<main>
+
+    <section class="panel active" id="panel-home">
+        <div class="home-hero">
+            <div class="profile-frame">
+                <img src="vanessa.jpg" alt="Vanessa Dayne Navisaga">
+            </div>
+            <h1>About Me</h1>
+            <p class="subtitle">Computer Science Student | Aspiring Software Engineer | Student Journalist</p>
+        </div>
+
+        <style>
+.about-text{
+    text-align: justify;
+}
+
+.about-text p{
+    text-align: justify;
+    margin-bottom: 14px;
+    line-height: 1.8;
+}
+</style>
+
+<div class="about-text">
+    <p>Hello! I am Vanessa Dayne Navisaga, a first-year college student with a growing interest in Computer Science, technology, and digital innovation.</p>
+    
+    <p>My passion for learning began during my Junior and Senior High School years, where I actively participated in academics, leadership, journalism, and community service. These experiences helped me develop strong communication, critical thinking, problem-solving, and leadership skills that continue to guide me today.</p>
+    
+    <p>As I pursue my college education, I am exploring various areas of Computer Science, including programming, web development, and emerging technologies. I enjoy learning new concepts, taking on challenges, and continuously improving my skills through academic and personal projects.</p>
+    
+    <p>This portfolio shares my educational endeavor, attainments, experiences, and projects. It reflects my commitment to lifelong learning, personal growth, and meaningful contributions to both the academe and the field of technology.</p>
+
+    <p>Beyond academics, I enjoy creating websites, experimenting with interactive designs, and exploring how technology can solve real-world problems.</p>
+</div>
+
+        <div class="tag-row">
+            <span class="tag-pill">HTML</span>
+            <span class="tag-pill">Web Development</span>
+            <span class="tag-pill">Leadership</span>
+            <span class="tag-pill">Journalism</span>
+            <span class="tag-pill">Art</span>
+        </div>
+
+        <div class="divider-section">
+            <div class="section-title">
+                <h2>Tech Stack</h2>
+            </div>
+            <div class="stack-grid">
+                <div class="stack-chip"><span class="stack-icon">🌐</span>HTML</div>
+                <div class="stack-chip"><span class="stack-icon">🎨</span>CSS</div>
+                <div class="stack-chip"><span class="stack-icon">⚡</span>JavaScript</div>
+                <div class="stack-chip"><span class="stack-icon">🐙</span>GitHub</div>
+                <div class="stack-chip soon"><span class="stack-icon">🐍</span>Python (soon)</div>
+                <div class="stack-chip soon"><span class="stack-icon">⚛️</span>React (soon)</div>
+            </div>
+        </div>
+
+        <div class="divider-section">
+            <div class="section-title">
+                <h2>At a Glance</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card"><span class="stat-emoji"></span><span class="stat-num">15+</span><span class="stat-label">Awards Earned</span></div>
+                <div class="stat-card"><span class="stat-emoji"></span><span class="stat-num">5</span><span class="stat-label">Projects Built</span></div>
+                <div class="stat-card"><span class="stat-emoji"></span><span class="stat-num">9</span><span class="stat-label">Years in Journalism</span></div>
+                <div class="stat-card"><span class="stat-emoji"></span><span class="stat-num">5</span><span class="stat-label">Leadership Positions</span></div>
+            </div>
+        </div>
+
+        <div class="divider-section">
+            <div class="section-title">
+                <h2>Currently Learning</h2>
+            </div>
+            <ul class="learning-list">
+                <li>Git &amp; GitHub Workflows</li>
+                <li>Front-End Development Libraries</li>
+                <li>Responsive Design</li>
+                <li>UI/UX Design</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="panel" id="panel-academics">
+        <div class="section-title">
+            <h2>Academic Background</h2>
+        </div>
+
+        <div class="level-block">
+            <div class="level-header">
+                <h3>College</h3>
+                <span class="level-sub">Current Institution</span>
+            </div>
+            <div class="gloss-card">
+                <h3>Bachelor of Science in Computer Science</h3>
+                <p>First-Year Student</p>
+            </div>
+        </div>
+
+        <div class="level-block">
+            <div class="level-header">
+                <h3>Senior High School</h3>
+                <span class="level-sub">Academic Track Humanities and Social Sciences (HUMSS)</span>
+            </div>
+
+            <div class="subsection-label">Attainments</div>
+            <ul class="pill-list">
+                <li>Class Valedictorian</li>
+                <li>With Highest Honors</li>
+                <li>Philippine Senate Gold Medal Awardee for Academic Excellence</li>
+                <li>National Schools Press Conference Qualifier</li>
+                <li>Work Immersion Awardee</li>
+            </ul>
+        </div>
+
+        <div class="level-block">
+            <div class="level-header">
+                <h3>Junior High School</h3>
+            </div>
+
+            <div class="subsection-label">Academic Honors</div>
+            <div class="honors-row">
+                <div class="honor-badge"><span class="grade">Grade 7</span>With High Honors</div>
+                <div class="honor-badge"><span class="grade">Grade 8</span>With High Honors</div>
+                <div class="honor-badge"><span class="grade">Grade 9</span>With High Honors</div>
+                <div class="honor-badge"><span class="grade">Grade 10</span>With High Honors</div>
+            </div>
+
+            <div class="subsection-label">Special Awards</div>
+            <ul class="pill-list">
+                <li>Special Award in Communication Arts</li>
+                <li>Special Award in Performing Arts</li>
+                <li>School Leadership Award</li>
+                <li>Youth Leadership Excellence Award</li>
+                <li>Junior Chamber International Awardee</li>
+                <li>Outstanding Local Child Representative</li>
+            </ul>
+        </div>
+
+
+        <div class="level-block">
+            <div class="level-header"><h3>Leadership Experience</h3></div>
+            <ul class="pill-list">
+                <li>President, Supreme Secondary Learner Government (SSLG) of RTLNHS S.Y. 2024-2025</li>
+                <li>Vice President, Division Federation of Supreme Secondary Learner Government (DFSSLG) of Bago City S.Y. 2024-2025</li>
+                <li>Child Representative and Secretary, Provincial Council for the Protection of Children (PCPC) of Negros Occidental S.Y. 2021-2025</li>
+                <li>Voting Member, School Governance Council of RTLNHS S.Y. 2024-2025</li>
+                <li>Girl City Mayor, Linggo ng Kabataan of Bago City 2023</li>
+            </ul>
+        </div>
+
+    
+        <div class="level-block">
+            <div class="level-header"><h3>Journalism &amp; Publications</h3></div>
+            <ul class="pill-list">
+                <li>Editor-in-Chief, The Dawn (JHS English Student Publication) of RTLNHS</li>
+                <li>Editor-in-Chief, The Louisiana Chronicles (SHS English Student Publication) of RTLNHS</li>
+                <li>Regional Schools Press Conference Champion — Editorial Writing S.Y. 2024-2025</li>
+                <li>Division Schools Press Conference Champion — Editorial Writing S.Y. 2024-2025</li>
+                <li>District Schools Press Conference Champion — Editorial Writing S.Y. 2025-2026</li>
+                <li>Division Schools Press Conference 5th Placer — Editorial Writing S.Y. 2025-2026</li>
+            </ul>
+        </div>
+
+     
+        <div class="level-block">
+            <div class="level-header"><h3>Journey So Far</h3></div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2024</div>
+                    <div class="timeline-desc">Joined and participated various school, local, and provincial organizations.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-desc">Grew interest in computer science and decided to sign up for online courses.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-desc">Learned introduction to CS and HTML. Built this portfolio website, interactive projects, and attending computer science- related online courses to gain more insights.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="panel" id="panel-projects">
+
+  <div class="section-title">
+    <h2>Projects</h2>
+  </div>
+
+  <div class="project-grid">
+
+  
+    <div class="gloss-card tape-right project-card">
+      <div class="project-thumb"></div>
+      <h3>Neon Cat's Cradle</h3>
+      <p class="project-desc">Raise both hands to the camera and watch neon strings stretch between your fingertips like a cat's cradle, with pulsing light beads tracing the threads and a circular shape hovering where your index fingers meet.</p>
+      <div class="tech-tags">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Hand Tracking</span>
+      </div>
+      
+      <div class="project-btn-row">
+        <a class="project-btn demo" href="https://vanessa-dayne.github.io/neon-cat-cradle/" target="_blank">Live Demo</a>
+        <a class="project-btn repo" href="https://github.com/vanessa-dayne/neon-cat-cradle" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+   
+    <div class="gloss-card project-card">
+      <div class="project-thumb"></div>
+      <h3>3D Interactive Particles</h3>
+      <p class="project-desc">Real-time webcam hand tracking morphs a live 3D particle field into different shapes — open hand for sphere, pinch for heart, fist for singularity, peace sign for Venus symbol — with a full-screen mode.</p>
+      <div class="tech-tags">
+        <span>JavaScript</span><span>HTML</span>
+      </div>
+      
+      <div class="project-btn-row">
+        <a class="project-btn demo" href="https://vanessa-dayne.github.io/3d-interactive-particles/" target="_blank">Live Demo</a>
+        <a class="project-btn repo" href="https://github.com/vanessa-dayne/3d-interactive-particles" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+  
+    <div class="gloss-card tape-right project-card">
+      <div class="project-thumb"></div>
+      <h3>Air Doodle</h3>
+      <p class="project-desc">Draw mid-air with your index finger and watch a glowing line trail behind it — finished doodles save to a personal gallery you can revisit and delete from.</p>
+      <div class="tech-tags">
+        <span>HTML</span><span>JavaScript</span>
+      </div>
+     
+      <div class="project-btn-row">
+        <a class="project-btn demo" href="https://vanessa-dayne.github.io/air-doodle/" target="_blank">Live Demo</a>
+        <a class="project-btn repo" href="https://github.com/vanessa-dayne/air-doodle" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="gloss-card tape-right project-card">
+      <div class="project-thumb"></div>
+      <h3>Dreamy Log Task Tracker</h3>
+      <p class="project-desc">Organize your daily tasks with a dreamy coquette-inspired planner featuring task categories, due dates, priorities, progress tracking, and local storage to keep everything saved on your device.</p>
+      <div class="tech-tags">
+        <span>HTML</span><span>JSON</span><span>JavaScript</span>
+      </div>
+     
+      <div class="project-btn-row">
+        <a class="project-btn demo" href=" https://vanessa-dayne.github.io/dreamy-log/" target="_blank">Live Demo</a>
+        <a class="project-btn repo" href="https://github.com/vanessa-dayne/dreamy-log" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+     <div class="gloss-card tape-right project-card">
+      <div class="project-thumb"></div>
+      <h3>Pixel Game Vibe Dreamy Photobooth</h3>
+      <p class="project-desc">A cozy photobooth with soft filters, hand-picked frames, and photo strips worth keeping. No app, no login — just open your camera and go.</p>
+      <div class="tech-tags">
+        <span>HTML</span><span>CSS</span><span>JavaScript</span>
+      </div>
+     
+      <div class="project-btn-row">
+        <a class="project-btn demo" href="https://vanessa-dayne.github.io/pixel-game-vibe-dreamy-photobooth/" target="_blank">Live Demo</a>
+        <a class="project-btn repo" href="https://github.com/vanessa-dayne/pixel-game-vibe-dreamy-photobooth" target="_blank">GitHub</a>
+    </div>
+
+    <div class="gloss-card tape-center project-card">
+      <div class="project-thumb"></div>
+      <h3>Portfolio Website</h3>
+      <p class="project-desc">This site — a personal hub showcasing my academics, leadership, journalism, and projects.</p>
+      <div class="tech-tags">
+        <span>HTML</span>
+      </div>
+      
+      <div class="project-btn-row">
+        <span class="status-chip live" style="margin-top:0;">Status: Active</span>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+   
+    <section class="panel" id="panel-contact">
+        <div class="section-title">
+            <h2>Contact</h2>
+        </div>
+
+        <div class="grid-2">
+
+            <a class="social-card" href="mailto:vanessadaynenavisaga2008@gmail.com" target="_blank">
+                <div class="gloss-card">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.01L12 13l8-6.99V6H4zm16 2.83l-7.4 6.46a1 1 0 0 1-1.2 0L4 8.83V18h16V8.83z"/></svg>
+                    </div>
+                    <h3>Email</h3>
+                    <div class="handle">vanessadaynenavisaga2008@gmail.com</div>
+                </div>
+            </a>
+
+            <a class="social-card" href="https://www.instagram.com/vanielllaaaaaa_/" target="_blank">
+                <div class="gloss-card tape-right">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2c2.72 0 3.06.01 4.12.06 1.06.05 1.79.22 2.43.47.66.26 1.21.6 1.76 1.15.55.55.89 1.1 1.15 1.76.25.64.42 1.37.47 2.43.05 1.06.06 1.4.06 4.12s-.01 3.06-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 0 1-1.15 1.76 4.9 4.9 0 0 1-1.76 1.15c-.64.25-1.37.42-2.43.47-1.06.05-1.4.06-4.12.06s-3.06-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 0 1-1.76-1.15 4.9 4.9 0 0 1-1.15-1.76c-.25-.64-.42-1.37-.47-2.43C2.01 15.06 2 14.72 2 12s.01-3.06.06-4.12c.05-1.06.22-1.79.47-2.43.26-.66.6-1.21 1.15-1.76.55-.55 1.1-.89 1.76-1.15.64-.25 1.37-.42 2.43-.47C8.94 2.01 9.28 2 12 2zm0 1.8c-2.67 0-2.99.01-4.04.06-.97.04-1.5.2-1.85.34-.47.18-.8.4-1.15.75-.35.35-.57.68-.75 1.15-.14.35-.3.88-.34 1.85C3.81 9 3.8 9.33 3.8 12s.01 2.99.06 4.04c.04.97.2 1.5.34 1.85.18.47.4.8.75 1.15.35.35.68.57 1.15.75.35.14.88.3 1.85.34 1.05.05 1.37.06 4.04.06s2.99-.01 4.04-.06c.97-.04 1.5-.2 1.85-.34.47-.18.8-.4 1.15-.75.35-.35.57-.68.75-1.15.14-.35.3-.88.34-1.85.05-1.05.06-1.37.06-4.04s-.01-2.99-.06-4.04c-.04-.97-.2-1.5-.34-1.85a3.1 3.1 0 0 0-.75-1.15 3.1 3.1 0 0 0-1.15-.75c-.35-.14-.88-.3-1.85-.34C14.99 3.81 14.67 3.8 12 3.8zm0 3.06a5.14 5.14 0 1 1 0 10.28 5.14 5.14 0 0 1 0-10.28zm0 1.8a3.34 3.34 0 1 0 0 6.68 3.34 3.34 0 0 0 0-6.68zm5.4-2.85a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg>
+                    </div>
+                    <h3>Instagram</h3>
+                    <div class="handle">@vanielllaaaaaa_</div>
+                </div>
+            </a>
+
+            <a class="social-card" href="https://web.facebook.com/vanessadaynenavisaga" target="_blank">
+                <div class="gloss-card">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94z"/></svg>
+                    </div>
+                    <h3>Facebook</h3>
+                    <div class="handle">Vanessa Dayne Navisaga</div>
+                </div>
+            </a>
+
+            <a class="social-card" href="https://github.com/vanessa-dayne" target="_blank">
+                <div class="gloss-card tape-right">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.58 2 12.2c0 4.5 2.87 8.32 6.84 9.67.5.1.68-.22.68-.49 0-.24-.01-1.05-.01-1.9-2.78.61-3.37-1.2-3.37-1.2-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.34-1.11.62-1.37-2.22-.26-4.56-1.13-4.56-5.02 0-1.11.38-2.02 1.01-2.73-.1-.26-.44-1.3.1-2.71 0 0 .83-.27 2.71 1.04a9.27 9.27 0 0 1 4.94 0c1.88-1.31 2.71-1.04 2.71-1.04.54 1.41.2 2.45.1 2.71.63.71 1.01 1.62 1.01 2.73 0 3.9-2.35 4.76-4.58 5.01.35.31.66.92.66 1.86 0 1.34-.01 2.42-.01 2.75 0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.2C22 6.58 17.52 2 12 2z"/></svg>
+                    </div>
+                    <h3>GitHub</h3>
+                    <div class="handle">vanessa-dayne</div>
+                </div>
+            </a>
+
+            <a class="social-card" href="https://www.linkedin.com/in/vanessa-dayne-s-navisaga-140567410/" target="_blank">
+                <div class="gloss-card tape-right">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M8.34 17V10.4H5.67V17H8.34M7.01 9.25C7.91 9.25 8.61 8.55 8.61 7.65C8.61 6.75 7.91 6.05 7.01 6.05C6.11 6.05 5.41 6.75 5.41 7.65C5.41 8.55 6.11 9.25 7.01 9.25M18.33 17V13C18.33 12.45 18.33 11.65 17.58 11.65C16.83 11.65,16.67,12,16,12H15V10H16C17,10,17,9,17,8C17,7,16,7,15,7H14V5H15C17,5,18,6,18,8V9H18C18,9,18,10,18,10H18V13H18C18,13,18,14,18,14H18V17H18Z"/></svg>
+                    </div>
+                    <h3>LinkedIn</h3>
+                    <div class="handle">vanessa-dayne-s-navisaga</div>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    
+    <div class="footer-credit">© 2026 Vanessa Dayne Navisaga — Built with HTML</div>
+</footer>
+
+<script>
+
+(function(){
+    const buttons = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.panel');
+    const glider = document.getElementById('tabGlider');
+
+    function moveGlider(btn){
+        glider.style.left = btn.offsetLeft + 'px';
+        glider.style.top = btn.offsetTop + 'px';
+        glider.style.width = btn.offsetWidth + 'px';
+        glider.style.height = btn.offsetHeight + 'px';
+    }
+
+    function activate(tab, btn){
+        buttons.forEach(b => b.classList.toggle('active', b === btn));
+        panels.forEach(p => p.classList.toggle('active', p.id === 'panel-' + tab));
+        moveGlider(btn);
+    }
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => activate(btn.dataset.tab, btn));
+    });
+
+    window.addEventListener('load', () => moveGlider(document.querySelector('.tab-btn.active')));
+    window.addEventListener('resize', () => moveGlider(document.querySelector('.tab-btn.active')));
+})();
+
+
+(function(){
+    const field = document.getElementById('sparkle-field');
+    const glyphs = ['✦','✧','♡','✿'];
+    const count = 24;
+    for(let i=0;i<count;i++){
+        const s = document.createElement('div');
+        s.className = 'sparkle';
+        s.textContent = glyphs[Math.floor(Math.random()*glyphs.length)];
+        s.style.left = Math.random()*100 + '%';
+        s.style.bottom = '-5%';
+        s.style.fontSize = (12 + Math.random()*16) + 'px';
+        s.style.animationDuration = (10 + Math.random()*14) + 's';
+        s.style.animationDelay = (Math.random()*14) + 's';
+        field.appendChild(s);
+    }
+})();
+
+
+document.addEventListener('click', function(e){
+    const glyphs = ['✦','♡','✧','💖'];
+    for(let i=0;i<6;i++){
+        const burst = document.createElement('div');
+        burst.className = 'burst';
+        burst.textContent = glyphs[Math.floor(Math.random()*glyphs.length)];
+        burst.style.left = e.clientX + 'px';
+        burst.style.top = e.clientY + 'px';
+        burst.style.color = Math.random() > 0.5 ? '#ff4f93' : '#d6336c';
+        const x = (Math.random()-0.5)*180 + 'px';
+        const y = (Math.random()-0.5)*180 + 'px';
+        burst.style.setProperty('--x', x);
+        burst.style.setProperty('--y', y);
+        document.body.appendChild(burst);
+        setTimeout(() => burst.remove(), 1000);
+    }
+});
+</script>
+
+</body>
+</html>
